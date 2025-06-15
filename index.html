@@ -335,9 +335,6 @@ footer a:hover {
 
   <div class="container">
   <div class="tabs">
-    <footer>
-  <p>© 2025 Executor GG. All rights reserved. | <a href="https://discord.gg/kKXngSwqRm" target="_blank" rel="noopener" style="color:#a29bff;">Join our Discord</a></p>
-</footer>
 
   <button class="tab-button active" data-tab="home">Home</button>
   <button class="tab-button" data-tab="configs">Configs</button>
@@ -349,120 +346,71 @@ footer a:hover {
 
   <div class="features-grid">
     <div class="feature-box">
-      <img src="https://img.icons8.com/ios-filled/64/6a11cb/download.png" alt="Fast Download" />
-      <h3>Fast Downloads</h3>
-      <p>Get the latest executor and configs instantly with just a click.</p>
+      <img src="https://img.icons8.com/ios-filled/100/6a11cb/rocket.png" alt="Speedy Execution" />
+      <h3>Speedy Execution</h3>
+      <p>Run scripts instantly with minimal delay.</p>
     </div>
     <div class="feature-box">
-      <img src="https://img.icons8.com/ios-filled/64/6a11cb/lock-2.png" alt="Secure" />
-      <h3>Secure Key System</h3>
-      <p>Your keys are protected with obfuscation and encrypted validation.</p>
+      <img src="https://img.icons8.com/ios-filled/100/6a11cb/shield.png" alt="Secure Environment" />
+      <h3>Secure Environment</h3>
+      <p>Keep your scripts safe and isolated.</p>
     </div>
     <div class="feature-box">
-      <img src="https://img.icons8.com/ios-filled/64/6a11cb/rocket.png" alt="Features" />
-      <h3>Upcoming Features</h3>
-      <p>We’re continuously improving with exciting features coming soon!</p>
+      <img src="https://img.icons8.com/ios-filled/100/6a11cb/globe--v1.png" alt="Multi-Platform" />
+      <h3>Multi-Platform</h3>
+      <p>Compatible with all major platforms.</p>
     </div>
   </div>
 
-  <a href="assets/public-config.txt" download>
-    <button class="button">Get Public Config</button>
-  </a>
-
-  <button class="button pulse" onclick="window.location.href='https://github.com/JohnyJonson/Executor-gg.wtf/releases'">
-    Download Executor
-  </button>
-
-  <button class="button" onclick="toggleFeatures()">Features</button>
-  <div id="features">Releasing Soon!</div>
+  <div id="k">
+    <label for="inputKey">Enter Access Key:</label>
+    <input type="password" id="inputKey" placeholder="Enter your key here" />
+    <button class="button pulse" onclick="submitKey()">Submit</button>
+    <div id="dm"></div>
+  </div>
 </div>
-
 
 <div class="tab-content" id="configs" style="display:none;">
-  <button class="button" onclick="showKeyBox()">Get Private Config</button>
-
-  <div id="k" style="display:none;margin-top:20px;">
-    <label for="kI">Key System:</label>
-    <input type="text" id="kI" placeholder="Enter your key">
-    <button class="button" onclick="checkKey()">Submit</button>
-  </div>
-
-  <div id="dm">
-    DM KEY: <span id="dmKey"></span>
-  </div>
+  <h2>Configurations</h2>
+  <p>Coming soon...</p>
 </div>
 
-  </div>
+</div>
 
-  <!-- Hidden anchor for download -->
-  <a id="hiddenDownload" href="assets/newfle.txt" download style="display: none;"></a>
+<footer>
+  © 2025 Executor GG — Designed by Personals23
+</footer>
 
-  <script>
-    // Tab switching logic
-const tabButtons = document.querySelectorAll('.tab-button');
-const tabContents = document.querySelectorAll('.tab-content');
+<script>
+  // Tab switching logic
+  const tabs = document.querySelectorAll('.tab-button');
+  const contents = document.querySelectorAll('.tab-content');
 
-tabButtons.forEach(btn => {
-  btn.addEventListener('click', () => {
-    // Remove active class from all buttons
-    tabButtons.forEach(b => b.classList.remove('active'));
-    // Hide all tab contents
-    tabContents.forEach(tc => tc.style.display = 'none');
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
 
-    // Activate clicked button and show its content
-    btn.classList.add('active');
-    const tabId = btn.getAttribute('data-tab');
-    document.getElementById(tabId).style.display = 'block';
+      contents.forEach(c => c.style.display = 'none');
+      document.getElementById(tab.getAttribute('data-tab')).style.display = 'block';
+    });
   });
-});
 
-    function toggleFeatures() {
-      const f = document.getElementById('features');
-      f.style.display = (f.style.display === 'none' || f.style.display === '') ? 'block' : 'none';
-    }
+  // Obfuscated keys as base64 strings
+  const obfuscatedUserKey = 'S0VZX1BVTExJQy5QUklWQVRFNA=='; 
+  const obfuscatedDmKey = 'S0VZX01EX0FQRS5HZ1hDZ0hUKXNkZ0hlc2Rmc1VTVXZiZ2RmcnN1emdTSDQzNTZCR0lPRkRHSHRzZ2ptZGZP'; 
 
-    function showKeyBox() {
-      document.getElementById('k').style.display = 'block';
-    }
+  // Decode base64 helper
+  function decodeBase64(str) {
+    return atob(str);
+  }
 
-    function checkKey() {
-      const userKey = document.getElementById('kI').value.trim();
+  const validKey = decodeBase64(obfuscatedUserKey);
+  const dmKey = decodeBase64(obfuscatedDmKey);
 
-     
-      const keyParts = [
-        "UklWQVRFNA==",  // part 3
-        "S0VZX1B",       // part 1
-        "VQkxJQy5Q"      // part 2
-      ];
+  function submitKey() {
+    const input = document.getElementById('inputKey');
+    const dm = document.getElementById('dm');
+    const key = input.value.trim();
 
-      // Reassemble and decode expected key
-      const expectedKey = atob(keyParts[1] + keyParts[2] + keyParts[0]);
-
-      // Obfuscated DM key parts
-      const dmKeyParts = [
-        "SGRzam1kZk8=",
-        "S0VZX0RNX0FQRS5HZ1hDZ0hUJXNkZ0hlc2Rmc1VTVXZnZGZyc3V6Z1NINDM1NkJHSU9GREc="
-      ];
-
-      // Decode DM key by concatenation after decoding separately
-      const dmKey = atob(dmKeyParts[1]) + atob(dmKeyParts[0]);
-
-      if (userKey === expectedKey) {
-        alert("Correct key! Redirecting to Discord for DM Key redemption...");
-        window.open("https://discord.gg/kKXngSwqRm", "_blank");
-
-   
-        document.getElementById('hiddenDownload').click();
-
-        // Show DM Key after a delay
-        setTimeout(() => {
-          document.getElementById('dmKey').textContent = dmKey;
-          document.getElementById('dm').style.display = 'block';
-        }, 5000);
-      } else {
-        alert("Invalid key.");
-      }
-    }
-  </script>
-</body>
-</html>
+    if (
