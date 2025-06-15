@@ -47,14 +47,40 @@
       transform: scale(1.15) rotate(3deg);
     }
 
+    .tabs {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 100px;
+    }
+
+    .tab-button {
+      padding: 10px 20px;
+      background-color: #6a11cb;
+      border: none;
+      border-radius: 8px;
+      color: white;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .tab-button:hover {
+      background-color: #7f34e7;
+    }
+
     .container {
       max-width: 800px;
-      margin: 120px auto;
+      margin: 30px auto;
       background-color: rgba(0, 0, 0, 0.7);
       padding: 30px 40px;
       border-radius: 16px;
       box-shadow: 0 0 30px rgba(106, 17, 203, 0.7);
       text-align: center;
+      display: none;
+    }
+
+    .container.active {
+      display: block;
     }
 
     h1 {
@@ -145,6 +171,28 @@
       white-space: pre-wrap;
     }
 
+    .config-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .config-buttons a {
+      text-decoration: none;
+      background-color: #6a11cb;
+      color: white;
+      padding: 12px 20px;
+      border-radius: 10px;
+      display: inline-block;
+      font-size: 16px;
+      transition: background 0.3s;
+    }
+
+    .config-buttons a:hover {
+      background-color: #7f34e7;
+    }
+
     footer {
       text-align: center;
       margin-top: 40px;
@@ -159,7 +207,12 @@
     <img src="vxpeLogo.png" alt="vxpe.gg logo" class="logo" />
   </a>
 
-  <div class="container">
+  <div class="tabs">
+    <button class="tab-button" onclick="showTab('home')">Home</button>
+    <button class="tab-button" onclick="showTab('configs')">Configs</button>
+  </div>
+
+  <div id="home" class="container active">
     <h1>Welcome to Executor GG</h1>
     <p class="subtitle">Your all-in-one executor tool for fast, secure script execution.</p>
 
@@ -190,12 +243,21 @@
     <div id="dm"></div>
   </div>
 
+  <div id="configs" class="container">
+    <h1>Configuration Tools</h1>
+    <p class="subtitle">Access configs and download the executor.</p>
+
+    <div class="config-buttons">
+      <a href="https://github.com/JohnyJonson/Injector" target="_blank">Get Public Vxpe Config</a>
+      <a href="https://github.com/JohnyJonson/Executor-gg.wtf/releases" target="_blank">Download Executor</a>
+    </div>
+  </div>
+
   <footer>
-    Made with 💜 by <a href="https://github.com/johnyjonson" target="_blank">Johny Jonson</a>
+    Made with 💜 by <a href="https://github.com/johnyjonson" target="_blank">vxpe.gg (johnyjonson)</a>
   </footer>
 
   <script>
-  
     const encodedKey = "S0VZX1BVQkxJQy5QUklWQVRFNA==";
     const encodedDM = "S0VZX0RNX0FQRS5HZ1hDZ0hUJTlzZGdIZXNkZnNVU1V2YmdkZnJzdXpnU0g0MzU2QkdJT0ZER0hkc2dqbWRmTw==";
 
@@ -223,6 +285,13 @@
         dmDiv.style.display = "block";
         dmDiv.innerText = "❌ Invalid key. Please try again.";
       }
+    }
+
+    function showTab(tabId) {
+      document.querySelectorAll('.container').forEach(tab => {
+        tab.classList.remove('active');
+      });
+      document.getElementById(tabId).classList.add('active');
     }
   </script>
 
