@@ -62,6 +62,7 @@
       color: white;
       cursor: pointer;
       font-size: 14px;
+      transition: background-color 0.3s ease;
     }
 
     .tab-button:hover {
@@ -77,10 +78,16 @@
       box-shadow: 0 0 30px rgba(106, 17, 203, 0.7);
       text-align: center;
       display: none;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
     }
 
     .container.active {
       display: block;
+      opacity: 1;
+      transform: translateY(0);
+      animation: fadeInUp 0.6s ease forwards;
     }
 
     h1 {
@@ -110,6 +117,17 @@
       width: 180px;
       text-align: center;
       box-shadow: 0 0 12px rgba(106, 17, 203, 0.5);
+      opacity: 0;
+      transform: scale(0.95);
+      animation: scaleIn 0.5s ease forwards;
+    }
+
+    .feature-box:nth-child(2) {
+      animation-delay: 0.4s;
+    }
+
+    .feature-box:nth-child(3) {
+      animation-delay: 0.6s;
     }
 
     .feature-box img {
@@ -130,6 +148,15 @@
 
     #key-entry {
       margin-top: 30px;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 0.5s ease forwards;
+      animation-delay: 0.8s;
+    }
+
+    #key-entry.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     #key-entry label {
@@ -156,6 +183,7 @@
       border-radius: 8px;
       cursor: pointer;
       font-size: 14px;
+      transition: background-color 0.3s ease;
     }
 
     .button:hover {
@@ -169,6 +197,16 @@
       border-radius: 10px;
       display: none;
       white-space: pre-wrap;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 0.5s ease forwards;
+      animation-delay: 1s;
+    }
+
+    #dm.visible {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .config-buttons {
@@ -199,6 +237,28 @@
       color: #ccc;
       font-size: 13px;
     }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes scaleIn {
+      from {
+        opacity: 0;
+        transform: scale(0.95);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
   </style>
 </head>
 <body>
@@ -217,24 +277,24 @@
     <p class="subtitle">Your all-in-one executor tool for fast, secure script execution.</p>
 
     <div class="features-grid">
-      <div class="feature-box">
+      <div class="feature-box" style="animation-delay: 0.2s;">
         <img src="https://img.icons8.com/ios-filled/100/6a11cb/rocket.png" alt="Speedy Execution" />
         <h3>Speedy Execution</h3>
         <p>Run scripts instantly with minimal delay.</p>
       </div>
-      <div class="feature-box">
+      <div class="feature-box" style="animation-delay: 0.4s;">
         <img src="https://img.icons8.com/ios-filled/100/6a11cb/shield.png" alt="Secure Environment" />
         <h3>Secure</h3>
         <p>Scripts run in a protected environment.</p>
       </div>
-      <div class="feature-box">
+      <div class="feature-box" style="animation-delay: 0.6s;">
         <img src="https://img.icons8.com/ios-filled/100/6a11cb/globe--v1.png" alt="Multi-Platform" />
         <h3>Multi-Platform</h3>
         <p>Works across devices seamlessly.</p>
       </div>
     </div>
 
-    <div id="key-entry">
+    <div id="key-entry" class="visible">
       <label for="inputKey">Enter Access Key:</label>
       <input type="password" id="inputKey" placeholder="Enter your key here" />
       <button class="button" onclick="submitKey()">Submit</button>
@@ -259,7 +319,7 @@
 
   <script>
     const encodedKey = "S0VZX1BVQkxJQy5QUklWQVRFNA==";
-    const encodedDM = "S0VZX0RNX0FQRS5HZ1hDZ0hUJTlzZGdIZXNkZnNVU1V2YmdkZnJzdXpnU0g0MzU2QkdJT0ZER0hkc2dqbWRmTw==";
+    const encodedDM = "S0VZX0RNX0FQRS5HZ1hDZ0hUJTlzZGppdmU9bGFiWmo1QmdST2c9";
 
     function decodeBase64(str) {
       try {
@@ -269,30 +329,40 @@
       }
     }
 
-    const correctKey = decodeBase64(encodedKey);
-    const dmKey = decodeBase64(encodedDM);
+    function showTab(tabName) {
+      document.querySelectorAll(".container").forEach((container) => {
+        container.classList.remove("active");
+        container.style.display = "none";
+      });
 
-    function submitKey() {
-      const userInput = document.getElementById("inputKey").value.trim();
-      const dmDiv = document.getElementById("dm");
-
-      if (userInput === correctKey) {
-        dmDiv.style.display = "block";
-        dmDiv.innerText =
-          "Access granted!\n\nYour DM Key:\n" + dmKey +
-          "\n\nTo redeem join this discord:\nhttps://discord.gg/kKXngSwqRm";
-      } else {
-        dmDiv.style.display = "block";
-        dmDiv.innerText = "❌ Invalid key. Please try again.";
+      const tab = document.getElementById(tabName);
+      if (tab) {
+        tab.style.display = "block";
+        setTimeout(() => tab.classList.add("active"), 10);
       }
     }
 
-    function showTab(tabId) {
-      document.querySelectorAll('.container').forEach(tab => {
-        tab.classList.remove('active');
-      });
-      document.getElementById(tabId).classList.add('active');
+    function submitKey() {
+      const input = document.getElementById("inputKey").value.trim();
+      const key = decodeBase64(encodedKey);
+
+      const dmDiv = document.getElementById("dm");
+      if (input === key) {
+        const dm = decodeBase64(encodedDM);
+        dmDiv.textContent = dm;
+        dmDiv.style.display = "block";
+        dmDiv.classList.add("visible");
+      } else {
+        dmDiv.textContent = "Invalid key. Please try again.";
+        dmDiv.style.display = "block";
+        dmDiv.classList.add("visible");
+      }
     }
+
+    // Initialize on load
+    window.onload = () => {
+      showTab("home");
+    };
   </script>
 
 </body>
