@@ -378,7 +378,7 @@ footer a:hover {
 </div>
 
 <footer>
-  © 2025 Executor GG — Designed by Personals23
+  © 2025 Executor GG — Designed by vxpe
 </footer>
 
 <script>
@@ -397,8 +397,8 @@ footer a:hover {
   });
 
   // Obfuscated keys as base64 strings
-  const obfuscatedUserKey = 'S0VZX1BVTExJQy5QUklWQVRFNA=='; 
-  const obfuscatedDmKey = 'S0VZX01EX0FQRS5HZ1hDZ0hUKXNkZ0hlc2Rmc1VTVXZiZ2RmcnN1emdTSDQzNTZCR0lPRkRHSHRzZ2ptZGZP'; 
+  const obfuscatedUserKey = 'S0VZX1BVTExJQy5QUklWQVRFNA=='; // "KEY_PUBLIC.PRIVATE4"
+  const obfuscatedDmKey = 'S0VZX01EX0FQRS5HZ1hDZ0hUKXNkZ0hlc2Rmc1VTVXZiZ2RmcnN1emdTSDQzNTZCR0lPRkRHSHRzZ2ptZGZP'; // "KEY_DM_APE.GgXCgHT%sdgHesdfsUSUvbgdfrsuzgSH4356BGIOFDGHdsgjmdfO"
 
   // Decode base64 helper
   function decodeBase64(str) {
@@ -413,4 +413,24 @@ footer a:hover {
     const dm = document.getElementById('dm');
     const key = input.value.trim();
 
-    if (
+    if (key.length === 0) {
+      dm.style.color = '#ff9999';
+      dm.textContent = 'Please enter a key.';
+      dm.style.display = 'block';
+      return;
+    }
+
+    if (key === validKey) {
+      dm.style.color = '#a3ffb8';
+      dm.textContent = 'Key is valid! DM Key: ' + dmKey;
+      dm.style.display = 'block';
+    } else {
+      dm.style.color = '#ff9999';
+      dm.textContent = 'Invalid key. Please try again.';
+      dm.style.display = 'block';
+    }
+  }
+</script>
+  
+</body>
+</html>
