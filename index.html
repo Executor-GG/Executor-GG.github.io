@@ -148,6 +148,50 @@ body::before {
   color: #a0c4ff;
   text-shadow: 0 0 5px #6a11cb;
 }
+.tabs {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 25px;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.tab-button {
+  background: transparent;
+  border: 2px solid #6a11cb;
+  color: #c9b2ff;
+  padding: 10px 22px;
+  font-size: 16px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-weight: 600;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease,
+    box-shadow 0.3s ease;
+  box-shadow: 0 0 8px rgba(106, 17, 203, 0.3);
+}
+
+.tab-button:hover {
+  background-color: #6a11cb;
+  color: white;
+  box-shadow: 0 0 15px #6a11cb;
+}
+
+.tab-button.active {
+  background-color: #6a11cb;
+  color: white;
+  box-shadow: 0 0 20px #6a11cb;
+}
+
+.tab-content {
+  animation: fadeInTab 0.5s ease forwards;
+}
+
+@keyframes fadeInTab {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 
 @keyframes fadeInUp {
   from { opacity: 0; transform: translateY(15px); }
@@ -210,34 +254,62 @@ body::before {
   </a>
 
   <div class="container">
-    <a href="assets/public-config.txt" download>
-      <button class="button">Get Public Config</button>
-    </a>
+  <div class="tabs">
+  <button class="tab-button active" data-tab="home">Home</button>
+  <button class="tab-button" data-tab="configs">Configs</button>
+</div>
 
-    <button class="button pulse" onclick="window.location.href='https://github.com/JohnyJonson/Executor-gg.wtf/releases'">
-      Download Executor
-    </button>
+<div class="tab-content" id="home">
+  <a href="assets/public-config.txt" download>
+    <button class="button">Get Public Config</button>
+  </a>
 
-    <button class="button" onclick="toggleFeatures()">Features</button>
-    <div id="features">Releasing Soon!</div>
+  <button class="button pulse" onclick="window.location.href='https://github.com/JohnyJonson/Executor-gg.wtf/releases'">
+    Download Executor
+  </button>
 
-    <button class="button" onclick="showKeyBox()">Get Private Config</button>
+  <button class="button" onclick="toggleFeatures()">Features</button>
+  <div id="features">Releasing Soon!</div>
+</div>
 
-    <div id="k" style="display:none;margin-top:20px;">
-      <label for="kI">Key System:</label>
-      <input type="text" id="kI" placeholder="Enter your key" />
-      <button class="button" onclick="checkKey()">Submit</button>
-    </div>
+<div class="tab-content" id="configs" style="display:none;">
+  <button class="button" onclick="showKeyBox()">Get Private Config</button>
 
-    <div id="dm">
-      DM KEY: <span id="dmKey"></span>
-    </div>
+  <div id="k" style="display:none;margin-top:20px;">
+    <label for="kI">Key System:</label>
+    <input type="text" id="kI" placeholder="Enter your key">
+    <button class="button" onclick="checkKey()">Submit</button>
+  </div>
+
+  <div id="dm">
+    DM KEY: <span id="dmKey"></span>
+  </div>
+</div>
+
   </div>
 
   <!-- Hidden anchor for download -->
   <a id="hiddenDownload" href="assets/newfle.txt" download style="display: none;"></a>
 
   <script>
+    // Tab switching logic
+const tabButtons = document.querySelectorAll('.tab-button');
+const tabContents = document.querySelectorAll('.tab-content');
+
+tabButtons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    // Remove active class from all buttons
+    tabButtons.forEach(b => b.classList.remove('active'));
+    // Hide all tab contents
+    tabContents.forEach(tc => tc.style.display = 'none');
+
+    // Activate clicked button and show its content
+    btn.classList.add('active');
+    const tabId = btn.getAttribute('data-tab');
+    document.getElementById(tabId).style.display = 'block';
+  });
+});
+
     function toggleFeatures() {
       const f = document.getElementById('features');
       f.style.display = (f.style.display === 'none' || f.style.display === '') ? 'block' : 'none';
