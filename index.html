@@ -4,329 +4,347 @@
   <meta charset="UTF-8" />
   <title>Home</title>
   <style>
-   body {
-  margin: 0;
-  padding: 0;
-  font-family: Arial, sans-serif;
-  background: url('https://cdn.discordapp.com/attachments/1383452047206121592/1383455524590194859/PngIsCoollight.png?ex=684f839c&is=684e321c&hm=adf65ea864cb12a5a50211d1c949fd3396d795318de317ce345f9b4396e4d8eb&') no-repeat center center fixed;
-  background-size: cover;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  color: white;
-  overflow: hidden;
-  position: relative;
-}
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background: url('https://cdn.discordapp.com/attachments/1383452047206121592/1383455524590194859/PngIsCoollight.png?ex=684f839c&is=684e321c&hm=adf65ea864cb12a5a50211d1c949fd3396d795318de317ce345f9b4396e4d8eb&') no-repeat center center fixed;
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      color: white;
+      overflow: hidden;
+      position: relative;
+    }
 
-/* Add a subtle animated gradient overlay */
-body::before {
-  content: "";
-  position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: linear-gradient(270deg, #6a11cb, #2575fc, #6a11cb);
-  background-size: 600% 600%;
-  animation: gradientShift 20s ease infinite;
-  opacity: 0.15;
-  pointer-events: none;
-  z-index: 0;
-}
+    /* Animated gradient overlay */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: linear-gradient(270deg, #6a11cb, #2575fc, #6a11cb);
+      background-size: 600% 600%;
+      animation: gradientShift 20s ease infinite;
+      opacity: 0.15;
+      pointer-events: none;
+      z-index: 0;
+    }
 
-@keyframes gradientShift {
-  0% {background-position: 0% 50%;}
-  50% {background-position: 100% 50%;}
-  100% {background-position: 0% 50%;}
-}
+    @keyframes gradientShift {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
 
-.logo {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  width: 180px;
-  height: auto;
-  z-index: 1000;
-  transition: transform 0.3s ease;
-  filter: drop-shadow(3px 3px 6px black);
-}
+    .logo {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      width: 180px;
+      height: auto;
+      z-index: 1000;
+      transition: transform 0.3s ease;
+      filter: drop-shadow(3px 3px 6px black);
+    }
 
-.logo:hover {
-  transform: scale(1.15) rotate(3deg);
-  filter: drop-shadow(5px 5px 8px #6a11cb);
-}
+    .logo:hover {
+      transform: scale(1.15) rotate(3deg);
+      filter: drop-shadow(5px 5px 8px #6a11cb);
+    }
 
-.container {
-  position: relative;
-  text-align: center;
-  background-color: rgba(0, 0, 0, 0.7);
-  padding: 30px 40px;
-  border-radius: 16px;
-  box-shadow: 0 0 30px rgba(106, 17, 203, 0.7);
-  animation: fadeSlideBounce 1s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
-  z-index: 10;
-  max-width: 400px;
-  width: 90%;
-}
+    .container {
+      position: relative;
+      text-align: center;
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 30px 40px;
+      border-radius: 16px;
+      box-shadow: 0 0 30px rgba(106, 17, 203, 0.7);
+      animation: fadeSlideBounce 1s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+      z-index: 10;
+      max-width: 600px;
+      width: 90%;
+    }
 
-@keyframes fadeSlideBounce {
-  0% {
-    opacity: 0;
-    transform: translateY(-30px) scale(0.95);
-  }
-  60% {
-    opacity: 1;
-    transform: translateY(10px) scale(1.05);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
+    @keyframes fadeSlideBounce {
+      0% {
+        opacity: 0;
+        transform: translateY(-30px) scale(0.95);
+      }
+      60% {
+        opacity: 1;
+        transform: translateY(10px) scale(1.05);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
 
-.button {
-  background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
-  border: none;
-  color: white;
-  padding: 16px 36px;
-  font-size: 17px;
-  font-weight: 600;
-  border-radius: 12px;
-  margin: 12px 8px;
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
-  box-shadow: 0 4px 10px rgba(106, 17, 203, 0.6);
-  transition:
-    transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-    box-shadow 0.3s ease,
-    background-position 0.5s ease;
-  background-size: 200% 200%;
-  background-position: left center;
-}
+    .button {
+      background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+      border: none;
+      color: white;
+      padding: 16px 36px;
+      font-size: 17px;
+      font-weight: 600;
+      border-radius: 12px;
+      margin: 0 0 0 10px;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(106, 17, 203, 0.6);
+      transition:
+        transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+        box-shadow 0.3s ease,
+        background-position 0.5s ease;
+      background-size: 200% 200%;
+      background-position: left center;
+      vertical-align: middle;
+    }
 
-.button:hover {
-  background-position: right center;
-  transform: scale(1.12) rotate(-2deg);
-  box-shadow: 0 8px 20px rgba(106, 17, 203, 0.9);
-}
+    .button:hover {
+      background-position: right center;
+      transform: scale(1.12) rotate(-2deg);
+      box-shadow: 0 8px 20px rgba(106, 17, 203, 0.9);
+    }
 
-.button:active::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 300%;
-  height: 300%;
-  background: rgba(255, 255, 255, 0.25);
-  border-radius: 50%;
-  transform: translate(-50%, -50%) scale(0);
-  animation: ripple 0.6s linear;
-  pointer-events: none;
-  z-index: 1;
-}
+    .button:active::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 300%;
+      height: 300%;
+      background: rgba(255, 255, 255, 0.25);
+      border-radius: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      animation: ripple 0.6s linear;
+      pointer-events: none;
+      z-index: 1;
+    }
 
-@keyframes ripple {
-  to {
-    transform: translate(-50%, -50%) scale(1);
-    opacity: 0;
-  }
-}
+    @keyframes ripple {
+      to {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0;
+      }
+    }
 
-.pulse {
-  animation: pulseScale 2.5s ease-in-out infinite;
-}
+    .pulse {
+      animation: pulseScale 2.5s ease-in-out infinite;
+    }
 
-@keyframes pulseScale {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.08); }
-}
+    @keyframes pulseScale {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.08); }
+    }
 
-#features {
-  margin-top: 20px;
-  font-size: 20px;
-  display: none;
-  animation: fadeInUp 0.6s ease forwards;
-  color: #a0c4ff;
-  text-shadow: 0 0 5px #6a11cb;
-}
-.tabs {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 25px;
-  gap: 12px;
-  flex-wrap: wrap;
-}
+    #features {
+      margin-top: 20px;
+      font-size: 20px;
+      display: none;
+      animation: fadeInUp 0.6s ease forwards;
+      color: #a0c4ff;
+      text-shadow: 0 0 5px #6a11cb;
+    }
 
-.tab-button {
-  background: transparent;
-  border: 2px solid #6a11cb;
-  color: #c9b2ff;
-  padding: 10px 22px;
-  font-size: 16px;
-  border-radius: 30px;
-  cursor: pointer;
-  font-weight: 600;
-  transition:
-    background-color 0.3s ease,
-    color 0.3s ease,
-    box-shadow 0.3s ease;
-  box-shadow: 0 0 8px rgba(106, 17, 203, 0.3);
-}
+    .tabs {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 25px;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
 
-.tab-button:hover {
-  background-color: #6a11cb;
-  color: white;
-  box-shadow: 0 0 15px #6a11cb;
-}
+    .tab-button {
+      background: transparent;
+      border: 2px solid #6a11cb;
+      color: #c9b2ff;
+      padding: 10px 22px;
+      font-size: 16px;
+      border-radius: 30px;
+      cursor: pointer;
+      font-weight: 600;
+      transition:
+        background-color 0.3s ease,
+        color 0.3s ease,
+        box-shadow 0.3s ease;
+      box-shadow: 0 0 8px rgba(106, 17, 203, 0.3);
+    }
 
-.tab-button.active {
-  background-color: #6a11cb;
-  color: white;
-  box-shadow: 0 0 20px #6a11cb;
-}
+    .tab-button:hover {
+      background-color: #6a11cb;
+      color: white;
+      box-shadow: 0 0 15px #6a11cb;
+    }
 
-.tab-content {
-  animation: fadeInTab 0.5s ease forwards;
-}
+    .tab-button.active {
+      background-color: #6a11cb;
+      color: white;
+      box-shadow: 0 0 20px #6a11cb;
+    }
 
-@keyframes fadeInTab {
-  from { opacity: 0; transform: translateY(8px); }
-  to { opacity: 1; transform: translateY(0); }
-}
+    .tab-content {
+      animation: fadeInTab 0.5s ease forwards;
+    }
 
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(15px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-h1 {
-  font-size: 2.8rem;
-  margin-bottom: 8px;
-  color: #d6caff;
-  text-shadow: 0 0 12px #6a11cb;
-}
+    @keyframes fadeInTab {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
 
-.subtitle {
-  font-size: 1.3rem;
-  margin-bottom: 24px;
-  color: #b2a1ff;
-  font-weight: 500;
-  text-shadow: 0 0 8px #6a11cb;
-}
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(15px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
 
-.features-grid {
-  display: flex;
-  justify-content: center;
-  gap: 28px;
-  flex-wrap: wrap;
-  margin-bottom: 32px;
-}
+    h1 {
+      font-size: 2.8rem;
+      margin-bottom: 8px;
+      color: #d6caff;
+      text-shadow: 0 0 12px #6a11cb;
+    }
 
-.feature-box {
-  background: rgba(106, 17, 203, 0.15);
-  border-radius: 18px;
-  padding: 24px 20px;
-  width: 230px;
-  box-shadow: 0 0 12px rgba(106, 17, 203, 0.5);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  cursor: default;
-  text-align: center;
-  color: #d3c3ff;
-}
+    .subtitle {
+      font-size: 1.3rem;
+      margin-bottom: 24px;
+      color: #b2a1ff;
+      font-weight: 500;
+      text-shadow: 0 0 8px #6a11cb;
+    }
 
-.feature-box img {
-  width: 64px;
-  height: 64px;
-  margin-bottom: 14px;
-  filter: drop-shadow(0 0 6px #6a11cb);
-}
+    /* Features horizontal layout */
+    .features-grid {
+      display: flex;
+      justify-content: center;
+      gap: 28px;
+      flex-wrap: wrap;
+      margin-bottom: 32px;
+      max-width: 100%;
+      overflow-x: auto;
+      padding-bottom: 10px;
+    }
 
-.feature-box h3 {
-  margin-bottom: 10px;
-  font-size: 1.2rem;
-  color: #a18fff;
-}
+    /* Feature box styling */
+    .feature-box {
+      background: rgba(106, 17, 203, 0.15);
+      border-radius: 18px;
+      padding: 24px 20px;
+      width: 180px;
+      min-width: 180px;
+      box-shadow: 0 0 12px rgba(106, 17, 203, 0.5);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: default;
+      text-align: center;
+      color: #d3c3ff;
+      flex-shrink: 0;
+    }
 
-.feature-box p {
-  font-size: 0.9rem;
-  line-height: 1.4;
-  color: #b3aaff;
-}
+    .feature-box img {
+      width: 64px;
+      height: 64px;
+      margin-bottom: 14px;
+      filter: drop-shadow(0 0 6px #6a11cb);
+    }
 
-.feature-box:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 0 24px rgba(106, 17, 203, 0.8);
-}
+    .feature-box h3 {
+      margin-bottom: 10px;
+      font-size: 1.2rem;
+      color: #a18fff;
+    }
 
-#k label {
-  display: block;
-  margin-bottom: 6px;
-  font-size: 15px;
-  color: #d0d0ff;
-  font-weight: 600;
-  text-shadow: 0 0 3px #6a11cb;
-}
+    .feature-box p {
+      font-size: 0.9rem;
+      line-height: 1.4;
+      color: #b3aaff;
+    }
 
-#k input {
-  padding: 12px;
-  font-size: 15px;
-  border-radius: 8px;
-  border: none;
-  margin-right: 10px;
-  width: 220px;
-  transition: box-shadow 0.4s ease, background-color 0.3s ease;
-  background-color: #1a1a2e;
-  color: #eee;
-  box-shadow: inset 0 0 6px #3b3b72;
-}
+    .feature-box:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 0 24px rgba(106, 17, 203, 0.8);
+    }
 
-#k input::placeholder {
-  color: #888aaa;
-}
+    #k {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: nowrap;
+    }
 
-#k input:focus {
-  outline: none;
-  box-shadow: 0 0 10px #6a11cb;
-  background-color: #2c2c56;
-  color: white;
-}
+    #k label {
+      display: block;
+      margin-bottom: 0;
+      font-size: 15px;
+      color: #d0d0ff;
+      font-weight: 600;
+      margin-right: 12px;
+      flex-shrink: 0;
+    }
 
-#dm {
-  display: none;
-  margin-top: 15px;
-  font-weight: bold;
-  font-size: 15px;
-  background: rgba(106, 17, 203, 0.4);
-  padding: 12px;
-  border-radius: 10px;
-  color: #c9b2ff;
-  text-shadow: 0 0 4px #3b0d91;
-  word-break: break-word;
-  box-shadow: 0 0 15px #6a11cb;
-}
-footer {
-  position: fixed;
-  bottom: 10px;
-  width: 100%;
-  text-align: center;
-  font-size: 13px;
-  color: #9998ffcc;
-  text-shadow: 0 0 5px #6a11cbaa;
-  font-weight: 400;
-  z-index: 1000;
-}
+    #k input {
+      padding: 12px;
+      font-size: 15px;
+      border-radius: 8px;
+      border: none;
+      width: 220px;
+      transition: box-shadow 0.4s ease, background-color 0.3s ease;
+      background-color: #1a1a2e;
+      color: #eee;
+      box-shadow: inset 0 0 6px #3b3b72;
+      flex-shrink: 0;
+    }
 
-footer a {
-  text-decoration: none;
-  font-weight: 600;
-  transition: color 0.3s ease;
-}
+    #k input::placeholder {
+      color: #888aaa;
+    }
 
-footer a:hover {
-  color: #d6caff;
-}
+    #k input:focus {
+      outline: none;
+      box-shadow: 0 0 10px #6a11cb;
+      background-color: #2c2c56;
+      color: white;
+    }
 
+    #dm {
+      display: none;
+      margin-top: 15px;
+      font-weight: bold;
+      font-size: 15px;
+      background: rgba(106, 17, 203, 0.4);
+      padding: 12px;
+      border-radius: 10px;
+      color: #c9b2ff;
+      text-shadow: 0 0 4px #3b0d91;
+      word-break: break-word;
+      box-shadow: 0 0 15px #6a11cb;
+    }
+
+    footer {
+      position: fixed;
+      bottom: 10px;
+      width: 100%;
+      text-align: center;
+      font-size: 13px;
+      color: #9998ffcc;
+      text-shadow: 0 0 5px #6a11cbaa;
+      font-weight: 400;
+      z-index: 1000;
+    }
+
+    footer a {
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
+
+    footer a:hover {
+      color: #d6caff;
+    }
   </style>
 </head>
-  
 <body>
 
   <a href="https://johnyjonson.github.io/lol-2.com" target="_blank">
@@ -334,103 +352,94 @@ footer a:hover {
   </a>
 
   <div class="container">
-  <div class="tabs">
-
-  <button class="tab-button active" data-tab="home">Home</button>
-  <button class="tab-button" data-tab="configs">Configs</button>
-</div>
-
-<div class="tab-content" id="home">
-  <h1>Welcome to Executor GG</h1>
-  <p class="subtitle">Your all-in-one executor tool for fast, secure script execution.</p>
-
-  <div class="features-grid">
-    <div class="feature-box">
-      <img src="https://img.icons8.com/ios-filled/100/6a11cb/rocket.png" alt="Speedy Execution" />
-      <h3>Speedy Execution</h3>
-      <p>Run scripts instantly with minimal delay.</p>
+    <div class="tabs">
+      <button class="tab-button active" data-tab="home">Home</button>
+      <button class="tab-button" data-tab="configs">Configs</button>
     </div>
-    <div class="feature-box">
-      <img src="https://img.icons8.com/ios-filled/100/6a11cb/shield.png" alt="Secure Environment" />
-      <h3>Secure Environment</h3>
-      <p>Keep your scripts safe and isolated.</p>
+
+    <div class="tab-content" id="home">
+      <h1>Welcome to Executor GG</h1>
+      <p class="subtitle">Your all-in-one executor tool for fast, secure script execution.</p>
+
+      <div class="features-grid">
+        <div class="feature-box">
+          <img src="https://img.icons8.com/ios-filled/100/6a11cb/rocket.png" alt="Speedy Execution" />
+          <h3>Speedy Execution</h3>
+          <p>Run scripts instantly with minimal delay.</p>
+        </div>
+        <div class="feature-box">
+          <img src="https://img.icons8.com/ios-filled/100/6a11cb/shield.png" alt="Secure Environment" />
+          <h3>Secure Environment</h3>
+          <p>Keep your scripts safe and isolated.</p>
+        </div>
+        <div class="feature-box">
+          <img src="https://img.icons8.com/ios-filled/100/6a11cb/globe--v1.png" alt="Multi-Platform" />
+          <h3>Multi-Platform</h3>
+          <p>Compatible with all major platforms.</p>
+        </div>
+      </div>
+
+      <div id="k">
+        <label for="inputKey">Enter Access Key:</label>
+        <input type="password" id="inputKey" placeholder="Enter your key here" />
+        <button class="button pulse" onclick="submitKey()">Submit</button>
+      </div>
+      <div id="dm"></div>
     </div>
-    <div class="feature-box">
-      <img src="https://img.icons8.com/ios-filled/100/6a11cb/globe--v1.png" alt="Multi-Platform" />
-      <h3>Multi-Platform</h3>
-      <p>Compatible with all major platforms.</p>
+
+    <div class="tab-content" id="configs" style="display:none;">
+      <h2>Configurations</h2>
+      <p>Coming soon...</p>
     </div>
   </div>
 
-  <div id="k">
-    <label for="inputKey">Enter Access Key:</label>
-    <input type="password" id="inputKey" placeholder="Enter your key here" />
-    <button class="button pulse" onclick="submitKey()">Submit</button>
-    <div id="dm"></div>
-  </div>
-</div>
+  <footer>
+    © 2025 Executor GG — Designed by vxpe
+  </footer>
 
-<div class="tab-content" id="configs" style="display:none;">
-  <h2>Configurations</h2>
-  <p>Coming soon...</p>
-</div>
+  <script>
+    // Tab switching logic
+    const tabs = document.querySelectorAll('.tab-button');
+    const contents = document.querySelectorAll('.tab-content');
 
-</div>
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
 
-<footer>
-  © 2025 Executor GG — Designed by vxpe
-</footer>
-
-<script>
-  // Tab switching logic
-  const tabs = document.querySelectorAll('.tab-button');
-  const contents = document.querySelectorAll('.tab-content');
-
-  tabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      tabs.forEach(t => t.classList.remove('active'));
-      tab.classList.add('active');
-
-      contents.forEach(c => c.style.display = 'none');
-      document.getElementById(tab.getAttribute('data-tab')).style.display = 'block';
+        contents.forEach(c => c.style.display = 'none');
+        document.getElementById(tab.getAttribute('data-tab')).style.display = 'block';
+      });
     });
-  });
 
-  // Obfuscated keys as base64 strings
-  const obfuscatedUserKey = 'S0VZX1BVTExJQy5QUklWQVRFNA=='; // "KEY_PUBLIC.PRIVATE4"
-  const obfuscatedDmKey = 'S0VZX01EX0FQRS5HZ1hDZ0hUKXNkZ0hlc2Rmc1VTVXZiZ2RmcnN1emdTSDQzNTZCR0lPRkRHSHRzZ2ptZGZP'; // "KEY_DM_APE.GgXCgHT%sdgHesdfsUSUvbgdfrsuzgSH4356BGIOFDGHdsgjmdfO"
+    // Obfuscated keys as base64 strings
+    const obfuscatedUserKey = 'S0VZX1BVTExJQy5QUklWQVRFNA==';
+    const obfuscatedDmKey = 'S0VZX01EX0FQRS5HZ1hDZ0hUKXNkZ0hlc2Rmc1VTVXZiZ2RmcnN1emdTSDQzNTZCR0lPRkRHSHRzZ2ptZGZP'; 
 
-  // Decode base64 helper
-  function decodeBase64(str) {
-    return atob(str);
-  }
-
-  const validKey = decodeBase64(obfuscatedUserKey);
-  const dmKey = decodeBase64(obfuscatedDmKey);
-
-  function submitKey() {
-    const input = document.getElementById('inputKey');
-    const dm = document.getElementById('dm');
-    const key = input.value.trim();
-
-    if (key.length === 0) {
-      dm.style.color = '#ff9999';
-      dm.textContent = 'Please enter a key.';
-      dm.style.display = 'block';
-      return;
+    // Decode base64 function
+    function decodeBase64(str) {
+      try {
+        return atob(str);
+      } catch {
+        return null;
+      }
     }
 
-    if (key === validKey) {
-      dm.style.color = '#a3ffb8';
-      dm.textContent = 'Key is valid! DM Key: ' + dmKey;
-      dm.style.display = 'block';
-    } else {
-      dm.style.color = '#ff9999';
-      dm.textContent = 'Invalid key. Please try again.';
-      dm.style.display = 'block';
+    function submitKey() {
+      const input = document.getElementById('inputKey').value.trim();
+      const userKey = decodeBase64(obfuscatedUserKey);
+      const dmKey = decodeBase64(obfuscatedDmKey);
+      const dmDiv = document.getElementById('dm');
+
+      if (input === userKey) {
+        dmDiv.style.display = 'block';
+        dmDiv.textContent = `DM Key: ${dmKey}`;
+      } else {
+        dmDiv.style.display = 'block';
+        dmDiv.textContent = 'Invalid key, please try again.';
+      }
     }
-  }
-</script>
-  
+  </script>
+
 </body>
 </html>
