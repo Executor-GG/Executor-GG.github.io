@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Executor GG</title>
+  <meta charset="UTF-8" />
+  <title>Home</title>
   <style>
     body {
       margin: 0;
@@ -17,7 +17,6 @@
       color: white;
       overflow: hidden;
     }
-
     .logo {
       position: fixed;
       top: 20px;
@@ -28,11 +27,9 @@
       transition: transform 0.3s ease;
       filter: drop-shadow(3px 3px 6px black);
     }
-
     .logo:hover {
       transform: scale(1.1);
     }
-
     .container {
       text-align: center;
       background-color: rgba(0, 0, 0, 0.6);
@@ -41,7 +38,6 @@
       box-shadow: 0 4px 20px rgba(0,0,0,0.3);
       animation: fadeSlideIn 1s ease forwards;
     }
-
     .button {
       background-color: #6c757d;
       border: none;
@@ -55,13 +51,11 @@
       overflow: hidden;
       transition: transform 0.3s ease, background 0.3s, box-shadow 0.3s;
     }
-
     .button:hover {
       background-color: #5a6268;
       transform: scale(1.08) rotate(-1deg);
       box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
     }
-
     .button:active::after {
       content: '';
       position: absolute;
@@ -75,47 +69,39 @@
       animation: ripple 0.6s linear;
       pointer-events: none;
     }
-
     @keyframes ripple {
       to {
         transform: translate(-50%, -50%) scale(1);
         opacity: 0;
       }
     }
-
     .pulse {
       animation: pulse 2s infinite;
     }
-
     #features {
       margin-top: 20px;
       font-size: 20px;
       display: none;
       animation: fadeInUp 0.5s ease-in forwards;
     }
-
     @keyframes fadeSlideIn {
       from { opacity: 0; transform: translateY(-20px); }
       to { opacity: 1; transform: translateY(0); }
     }
-
     @keyframes fadeInUp {
       from { opacity: 0; transform: translateY(10px); }
       to { opacity: 1; transform: translateY(0); }
     }
-
     @keyframes pulse {
       0% { transform: scale(1); }
       50% { transform: scale(1.05); }
       100% { transform: scale(1); }
     }
-
     #k label {
       display: block;
       margin-bottom: 5px;
       font-size: 14px;
     }
-
     #k input {
       padding: 10px;
       font-size: 14px;
@@ -125,12 +111,10 @@
       width: 200px;
       transition: box-shadow 0.3s;
     }
-
     #k input:focus {
       outline: none;
       box-shadow: 0 0 6px rgba(255,255,255,0.6);
     }
-
     #dm {
       display: none;
       margin-top: 15px;
@@ -148,7 +132,7 @@
 <body>
 
   <a href="https://johnyjonson.github.io/lol-2.com" target="_blank">
-    <img src="vxpeLogo.png" alt="vxpe.gg logo" class="logo">
+    <img src="vxpeLogo.png" alt="vxpe.gg logo" class="logo" />
   </a>
 
   <div class="container">
@@ -167,7 +151,7 @@
 
     <div id="k" style="display:none;margin-top:20px;">
       <label for="kI">Key System:</label>
-      <input type="text" id="kI" placeholder="Enter your key">
+      <input type="text" id="kI" placeholder="Enter your key" />
       <button class="button" onclick="checkKey()">Submit</button>
     </div>
 
@@ -189,27 +173,44 @@
       document.getElementById('k').style.display = 'block';
     }
 
-  function checkKey() {
-    const userKey = document.getElementById('kI').value.trim();
-    const expectedKey = atob("S0VZX1BVQkxJQy5QUklWQVRFNA=="); // "KEY_PUBLIC.PRIVATE4"
-    const dmKey = atob("S0VZX0RNX0FQRS5HZ1hDZ0hUJXNkZ0hlc2Rmc1VTVXZnZGZyc3V6Z1NINDM1NkJHSU9GREdIZHNnam1kZk8=");
+    function checkKey() {
+      const userKey = document.getElementById('kI').value.trim();
 
-    if (userKey === expectedKey) {
-      alert("Correct key! Redirecting to Discord for DM Key redemption...");
-      window.open("https://discord.gg/kKXngSwqRm", "_blank");
+      // Obfuscated expected key parts (base64 strings split and scrambled)
+      const keyParts = [
+        "UklWQVRFNA==",  // part 3
+        "S0VZX1B",       // part 1
+        "VQkxJQy5Q"      // part 2
+      ];
 
-      // Optional: download private config
-      document.getElementById('hiddenDownload').click();
+      // Reassemble and decode expected key
+      const expectedKey = atob(keyParts[1] + keyParts[2] + keyParts[0]);
 
-      // Show DM Key after delay
-      setTimeout(() => {
-        document.getElementById('dmKey').textContent = dmKey;
-        document.getElementById('dm').style.display = 'block';
-      }, 5000);
-    } else {
-      alert("Invalid key.");
+      // Obfuscated DM key parts
+      const dmKeyParts = [
+        "SGRzam1kZk8=",
+        "S0VZX0RNX0FQRS5HZ1hDZ0hUJXNkZ0hlc2Rmc1VTVXZnZGZyc3V6Z1NINDM1NkJHSU9GREc="
+      ];
+
+      // Decode DM key by concatenation after decoding separately
+      const dmKey = atob(dmKeyParts[1]) + atob(dmKeyParts[0]);
+
+      if (userKey === expectedKey) {
+        alert("Correct key! Redirecting to Discord for DM Key redemption...");
+        window.open("https://discord.gg/kKXngSwqRm", "_blank");
+
+        // Trigger download of private config
+        document.getElementById('hiddenDownload').click();
+
+        // Show DM Key after a delay
+        setTimeout(() => {
+          document.getElementById('dmKey').textContent = dmKey;
+          document.getElementById('dm').style.display = 'block';
+        }, 5000);
+      } else {
+        alert("Invalid key.");
+      }
     }
-  }
   </script>
 </body>
 </html>
