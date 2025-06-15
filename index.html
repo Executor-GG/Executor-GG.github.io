@@ -189,22 +189,27 @@
       document.getElementById('k').style.display = 'block';
     }
 
-    function checkKey() {
-      const userKey = document.getElementById('kI').value.trim();
-      const expectedKey = atob("S0VZX1BVQkxJQy5QUklWQVRFNA==");
-      const dmKey = atob("S0VZX0RNX0FQRS5HZ1hDZ0hUJXNkZ0hlc2Rmc1VTVXZnZGZyc3V6Z1NINDM1NkJHSU9GREdIZHNnam1kZk8=");
+  function checkKey() {
+    const userKey = document.getElementById('kI').value.trim();
+    const expectedKey = atob("S0VZX1BVQkxJQy5QUklWQVRFNA=="); // "KEY_PUBLIC.PRIVATE4"
+    const dmKey = atob("S0VZX0RNX0FQRS5HZ1hDZ0hUJXNkZ0hlc2Rmc1VTVXZnZGZyc3V6Z1NINDM1NkJHSU9GREdIZHNnam1kZk8=");
 
-      if (userKey === expectedKey) {
-        // trigger download
-        document.getElementById('hiddenDownload').click();
+    if (userKey === expectedKey) {
+      alert("Correct key! Redirecting to Discord for DM Key redemption...");
+      window.open("https://discord.gg/kKXngSwqRm", "_blank");
 
-        // show DM key
+      // Optional: download private config
+      document.getElementById('hiddenDownload').click();
+
+      // Show DM Key after delay
+      setTimeout(() => {
         document.getElementById('dmKey').textContent = dmKey;
         document.getElementById('dm').style.display = 'block';
-      } else {
-        alert("Invalid key.");
-      }
+      }, 5000);
+    } else {
+      alert("Invalid key.");
     }
+  }
   </script>
 </body>
 </html>
