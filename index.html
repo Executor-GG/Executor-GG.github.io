@@ -148,7 +148,7 @@
     <button class="button" onclick="toggleFeatures()">Features</button>
     <div id="features">Releasing Soon!</div>
     
- <button class="button" id="private-btn" onclick="x()">Get Private Config</button>
+<button class="button" id="private-btn" onclick="x()">Get Private Config</button>
 
 <div id="k" style="display:none;margin-top:20px;">
   <label for="kI">Key System:</label>
@@ -156,8 +156,10 @@
   <button class="button" onclick="y()">Submit</button>
 </div>
 
-<a id="dL" href="assets/newfle.txt" download style="display:none;"></a>
 
+
+<div id="dm" style="display:none; margin-top: 15px; font-weight: bold; font-size: 14px; background: rgba(255,255,255,0.1); padding: 10px; border-radius: 8px;">
+  DM KEY: <span id="dmKey"></span>
 </div>
 
   </div>
@@ -193,6 +195,30 @@
     }
   }
 </script>
+  <script>
+  function x() {
+    document.getElementById('k').style.display = 'block';
+  }
+
+  function y() {
+    const _k = document.getElementById('kI').value.trim();
+    const _v = atob("S0VZX1BVQkxJQy5QUklWQVRFNA=="); // KEY_PUBLIC.PRIVATE4
+    const _dm = atob("S0VZX0RNX0FQRS5HZ1hDZ0hUJXNkZ0hlc2Rmc1VTVXZnZGZyc3V6Z1NINDM1NkJHSU9GREdIZHNnam1kZk8="); // KEY_DM_APE.GgXCgHT%sdgHesdfsUSUvbgdfrsuzgSH4356BGIOFDGHdsgjmdfO
+
+    if (_k === _v) {
+      document.getElementById('dL').click();
+      setTimeout(() => {
+        const dmBox = document.getElementById('dm');
+        const dmKey = document.getElementById('dmKey');
+        dmKey.textContent = _dm;
+        dmBox.style.display = 'block';
+      }, 300);
+    } else {
+      alert('Invalid key.');
+    }
+  }
+</script>
+
 
 </body>
 </html>
