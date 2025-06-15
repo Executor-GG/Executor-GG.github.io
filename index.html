@@ -8,7 +8,7 @@
       margin: 0;
       padding: 0;
       font-family: Arial, sans-serif;
-      background: url('https://cdn.discordapp.com/attachments/1383452047206121592/1383455524590194859/PngIsCoollight.png?ex=684edadc&is=684d895c&hm=2449dff74b12aa927ec12f492fcc8e7c67b0a8e13dadd3d0646b125a2bf7dcb1&') no-repeat center center fixed;
+      background: url('https://cdn.discordapp.com/attachments/1383452047206121592/1383455524590194859/PngIsCoollight.png') no-repeat center center fixed;
       background-size: cover;
       display: flex;
       justify-content: center;
@@ -17,13 +17,21 @@
       color: white;
       overflow: hidden;
     }
-#key-container input {
-  transition: box-shadow 0.3s;
-}
-#key-container input:focus {
-  outline: none;
-  box-shadow: 0 0 6px rgba(255,255,255,0.6);
-}
+
+    .logo {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      width: 180px;
+      height: auto;
+      z-index: 1000;
+      transition: transform 0.3s ease;
+      filter: drop-shadow(3px 3px 6px black);
+    }
+
+    .logo:hover {
+      transform: scale(1.1);
+    }
 
     .container {
       text-align: center;
@@ -33,20 +41,6 @@
       box-shadow: 0 4px 20px rgba(0,0,0,0.3);
       animation: fadeSlideIn 1s ease forwards;
     }
-.logo {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  width: 180px; /* Increased size */
-  height: auto;
-  z-index: 1000;
-  transition: transform 0.3s ease;
-  filter: drop-shadow(3px 3px 6px black);
-}
-
-.logo:hover {
-  transform: scale(1.1);
-}
 
     .button {
       background-color: #6c757d;
@@ -67,20 +61,6 @@
       transform: scale(1.08) rotate(-1deg);
       box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
     }
-#k label {
-  display: block;
-  margin-bottom: 5px;
-  font-size: 14px;
-}
-
-#k input {
-  padding: 10px;
-  font-size: 14px;
-  border-radius: 6px;
-  border: none;
-  margin-right: 10px;
-  width: 200px;
-}
 
     .button:active::after {
       content: '';
@@ -129,96 +109,102 @@
       50% { transform: scale(1.05); }
       100% { transform: scale(1); }
     }
+
+    #k label {
+      display: block;
+      margin-bottom: 5px;
+      font-size: 14px;
+    }
+
+    #k input {
+      padding: 10px;
+      font-size: 14px;
+      border-radius: 6px;
+      border: none;
+      margin-right: 10px;
+      width: 200px;
+      transition: box-shadow 0.3s;
+    }
+
+    #k input:focus {
+      outline: none;
+      box-shadow: 0 0 6px rgba(255,255,255,0.6);
+    }
+
+    #dm {
+      display: none;
+      margin-top: 15px;
+      font-weight: bold;
+      font-size: 14px;
+      background: rgba(255,255,255,0.1);
+      padding: 10px;
+      border-radius: 8px;
+      color: white;
+      text-shadow: 0 0 2px black;
+      word-break: break-all;
+    }
   </style>
 </head>
 <body>
-  <img src="vxpeLogo.png" alt="vxpe.gg logo" class="logo">
-<a href="https://johnyjonson.github.io/lol-2.com" target="_blank">
-  <img src="vxpeLogo.png" alt="vxpe.gg logo" class="logo">
-</a>
+
+  <a href="https://johnyjonson.github.io/lol-2.com" target="_blank">
+    <img src="vxpeLogo.png" alt="vxpe.gg logo" class="logo">
+  </a>
 
   <div class="container">
     <a href="assets/public-config.txt" download>
-  <button class="button">Get Public Config</button>
-</a>
+      <button class="button">Get Public Config</button>
+    </a>
 
     <button class="button pulse" onclick="window.location.href='https://github.com/JohnyJonson/Executor-gg.wtf/releases'">
       Download Executor
     </button>
+
     <button class="button" onclick="toggleFeatures()">Features</button>
     <div id="features">Releasing Soon!</div>
-    
-<button class="button" id="private-btn" onclick="x()">Get Private Config</button>
 
-<div id="k" style="display:none;margin-top:20px;">
-  <label for="kI">Key System:</label>
-  <input type="text" id="kI" placeholder="Enter your key">
-  <button class="button" onclick="y()">Submit</button>
-</div>
+    <button class="button" onclick="showKeyBox()">Get Private Config</button>
 
+    <div id="k" style="display:none;margin-top:20px;">
+      <label for="kI">Key System:</label>
+      <input type="text" id="kI" placeholder="Enter your key">
+      <button class="button" onclick="checkKey()">Submit</button>
+    </div>
 
-
-<div id="dm" style="display:none; margin-top: 15px; font-weight: bold; font-size: 14px; background: rgba(255,255,255,0.1); padding: 10px; border-radius: 8px;">
-  DM KEY: <span id="dmKey"></span>
-</div>
-
+    <div id="dm">
+      DM KEY: <span id="dmKey"></span>
+    </div>
   </div>
+
+  <!-- Hidden anchor for download -->
+  <a id="hiddenDownload" href="assets/newfle.txt" download style="display: none;"></a>
 
   <script>
     function toggleFeatures() {
-      const featureBox = document.getElementById('features');
-      if (featureBox.style.display === 'none' || featureBox.style.display === '') {
-        featureBox.style.display = 'block';
-        featureBox.style.animation = 'fadeInUp 0.5s ease-in forwards';
+      const f = document.getElementById('features');
+      f.style.display = (f.style.display === 'none' || f.style.display === '') ? 'block' : 'none';
+    }
+
+    function showKeyBox() {
+      document.getElementById('k').style.display = 'block';
+    }
+
+    function checkKey() {
+      const userKey = document.getElementById('kI').value.trim();
+      const expectedKey = atob("S0VZX1BVQkxJQy5QUklWQVRFNA=="); // "KEY_PUBLIC.PRIVATE4"
+      const dmKey = atob("S0VZX0RNX0FQRS5HZ1hDZ0hUJXNkZ0hlc2Rmc1VTVXZnZGZyc3V6Z1NINDM1NkJHSU9GREdIZHNnam1kZk8=");
+
+      if (userKey === expectedKey) {
+        // trigger download
+        document.getElementById('hiddenDownload').click();
+
+        // show DM key
+        document.getElementById('dmKey').textContent = dmKey;
+        document.getElementById('dm').style.display = 'block';
       } else {
-        featureBox.style.display = 'none';
+        alert("Invalid key.");
       }
     }
-  
-  
-  }
-
-
   </script>
-  <script>
-  function x() {
-    document.getElementById('k').style.display = 'block';
-  }
-
-  function y() {
-    const u = document.getElementById('kI').value.trim();
-    const encoded = atob('S0VZX1BVQkxJQy5QUklWQVRFNA=='); //
-    if (u === encoded) {
-      document.getElementById('dL').click();
-    } else {
-      alert('Invalid key.');
-    }
-  }
-</script>
-  <script>
-  function x() {
-    document.getElementById('k').style.display = 'block';
-  }
-
-  function y() {
-    const _k = document.getElementById('kI').value.trim();
-    const _v = atob("S0VZX1BVQkxJQy5QUklWQVRFNA=="); // KEY_PUBLIC.PRIVATE4
-    const _dm = atob("S0VZX0RNX0FQRS5HZ1hDZ0hUJXNkZ0hlc2Rmc1VTVXZnZGZyc3V6Z1NINDM1NkJHSU9GREdIZHNnam1kZk8="); // KEY_DM_APE.GgXCgHT%sdgHesdfsUSUvbgdfrsuzgSH4356BGIOFDGHdsgjmdfO
-
-    if (_k === _v) {
-      document.getElementById('dL').click();
-      setTimeout(() => {
-        const dmBox = document.getElementById('dm');
-        const dmKey = document.getElementById('dmKey');
-        dmKey.textContent = _dm;
-        dmBox.style.display = 'block';
-      }, 300);
-    } else {
-      alert('Invalid key.');
-    }
-  }
-</script>
-
-
 </body>
 </html>
