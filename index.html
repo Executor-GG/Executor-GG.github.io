@@ -4,129 +4,203 @@
   <meta charset="UTF-8" />
   <title>Home</title>
   <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-      background: url('https://cdn.discordapp.com/attachments/1383452047206121592/1383455524590194859/PngIsCoollight.png?ex=684f839c&is=684e321c&hm=adf65ea864cb12a5a50211d1c949fd3396d795318de317ce345f9b4396e4d8eb&') no-repeat center center fixed;
-      background-size: cover;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      color: white;
-      overflow: hidden;
-    }
-    .logo {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      width: 180px;
-      height: auto;
-      z-index: 1000;
-      transition: transform 0.3s ease;
-      filter: drop-shadow(3px 3px 6px black);
-    }
-    .logo:hover {
-      transform: scale(1.1);
-    }
-    .container {
-      text-align: center;
-      background-color: rgba(0, 0, 0, 0.6);
-      padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-      animation: fadeSlideIn 1s ease forwards;
-    }
-    .button {
-      background-color: #6c757d;
-      border: none;
-      color: white;
-      padding: 15px 30px;
-      font-size: 16px;
-      border-radius: 10px;
-      margin: 10px;
-      cursor: pointer;
-      position: relative;
-      overflow: hidden;
-      transition: transform 0.3s ease, background 0.3s, box-shadow 0.3s;
-    }
-    .button:hover {
-      background-color: #5a6268;
-      transform: scale(1.08) rotate(-1deg);
-      box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
-    }
-    .button:active::after {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 200%;
-      height: 200%;
-      background: rgba(255, 255, 255, 0.2);
-      border-radius: 50%;
-      transform: translate(-50%, -50%) scale(0);
-      animation: ripple 0.6s linear;
-      pointer-events: none;
-    }
-    @keyframes ripple {
-      to {
-        transform: translate(-50%, -50%) scale(1);
-        opacity: 0;
-      }
-    }
-    .pulse {
-      animation: pulse 2s infinite;
-    }
-    #features {
-      margin-top: 20px;
-      font-size: 20px;
-      display: none;
-      animation: fadeInUp 0.5s ease-in forwards;
-    }
-    @keyframes fadeSlideIn {
-      from { opacity: 0; transform: translateY(-20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-      100% { transform: scale(1); }
-    }
-    #k label {
-      display: block;
-      margin-bottom: 5px;
-      font-size: 14px;
-    }
-    #k input {
-      padding: 10px;
-      font-size: 14px;
-      border-radius: 6px;
-      border: none;
-      margin-right: 10px;
-      width: 200px;
-      transition: box-shadow 0.3s;
-    }
-    #k input:focus {
-      outline: none;
-      box-shadow: 0 0 6px rgba(255,255,255,0.6);
-    }
-    #dm {
-      display: none;
-      margin-top: 15px;
-      font-weight: bold;
-      font-size: 14px;
-      background: rgba(255,255,255,0.1);
-      padding: 10px;
-      border-radius: 8px;
-      color: white;
-      text-shadow: 0 0 2px black;
-      word-break: break-all;
-    }
+   body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background: url('https://cdn.discordapp.com/attachments/1383452047206121592/1383455524590194859/PngIsCoollight.png?ex=684f839c&is=684e321c&hm=adf65ea864cb12a5a50211d1c949fd3396d795318de317ce345f9b4396e4d8eb&') no-repeat center center fixed;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  color: white;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Add a subtle animated gradient overlay */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(270deg, #6a11cb, #2575fc, #6a11cb);
+  background-size: 600% 600%;
+  animation: gradientShift 20s ease infinite;
+  opacity: 0.15;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes gradientShift {
+  0% {background-position: 0% 50%;}
+  50% {background-position: 100% 50%;}
+  100% {background-position: 0% 50%;}
+}
+
+.logo {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 180px;
+  height: auto;
+  z-index: 1000;
+  transition: transform 0.3s ease;
+  filter: drop-shadow(3px 3px 6px black);
+}
+
+.logo:hover {
+  transform: scale(1.15) rotate(3deg);
+  filter: drop-shadow(5px 5px 8px #6a11cb);
+}
+
+.container {
+  position: relative;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 30px 40px;
+  border-radius: 16px;
+  box-shadow: 0 0 30px rgba(106, 17, 203, 0.7);
+  animation: fadeSlideBounce 1s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+  z-index: 10;
+  max-width: 400px;
+  width: 90%;
+}
+
+@keyframes fadeSlideBounce {
+  0% {
+    opacity: 0;
+    transform: translateY(-30px) scale(0.95);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(10px) scale(1.05);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.button {
+  background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+  border: none;
+  color: white;
+  padding: 16px 36px;
+  font-size: 17px;
+  font-weight: 600;
+  border-radius: 12px;
+  margin: 12px 8px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(106, 17, 203, 0.6);
+  transition:
+    transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.3s ease,
+    background-position 0.5s ease;
+  background-size: 200% 200%;
+  background-position: left center;
+}
+
+.button:hover {
+  background-position: right center;
+  transform: scale(1.12) rotate(-2deg);
+  box-shadow: 0 8px 20px rgba(106, 17, 203, 0.9);
+}
+
+.button:active::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 300%;
+  height: 300%;
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  animation: ripple 0.6s linear;
+  pointer-events: none;
+  z-index: 1;
+}
+
+@keyframes ripple {
+  to {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0;
+  }
+}
+
+.pulse {
+  animation: pulseScale 2.5s ease-in-out infinite;
+}
+
+@keyframes pulseScale {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+}
+
+#features {
+  margin-top: 20px;
+  font-size: 20px;
+  display: none;
+  animation: fadeInUp 0.6s ease forwards;
+  color: #a0c4ff;
+  text-shadow: 0 0 5px #6a11cb;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+#k label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 15px;
+  color: #d0d0ff;
+  font-weight: 600;
+  text-shadow: 0 0 3px #6a11cb;
+}
+
+#k input {
+  padding: 12px;
+  font-size: 15px;
+  border-radius: 8px;
+  border: none;
+  margin-right: 10px;
+  width: 220px;
+  transition: box-shadow 0.4s ease, background-color 0.3s ease;
+  background-color: #1a1a2e;
+  color: #eee;
+  box-shadow: inset 0 0 6px #3b3b72;
+}
+
+#k input::placeholder {
+  color: #888aaa;
+}
+
+#k input:focus {
+  outline: none;
+  box-shadow: 0 0 10px #6a11cb;
+  background-color: #2c2c56;
+  color: white;
+}
+
+#dm {
+  display: none;
+  margin-top: 15px;
+  font-weight: bold;
+  font-size: 15px;
+  background: rgba(106, 17, 203, 0.4);
+  padding: 12px;
+  border-radius: 10px;
+  color: #c9b2ff;
+  text-shadow: 0 0 4px #3b0d91;
+  word-break: break-word;
+  box-shadow: 0 0 15px #6a11cb;
+}
+
   </style>
 </head>
 <body>
