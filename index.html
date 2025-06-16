@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <title>Executor-gg Home</title>
 <style>
-  /* Dark red & black gradient background */
+ 
   html, body {
     margin: 0; padding: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -346,8 +346,24 @@
     }
   }
 
-  const DM_KEY = "KEY_DM_APE_VXPE_CONFIG_PRIVATE_WEB.GgXCgHTdgHesdfsUSUvbgdfrsuzgSH4356BGIOFDGHdsgjmdfO";
-  const DISCORD_HANDLE = "Discord: personals23"; 
+  // Obfuscated strings
+  const encodedDMKey = "S0VZX0RNX0FQRV9WWFBFX0NPTkZJR19QUklWQVRFX1dFQi5HZ1hDZ0hUZGdIZXNkZnNVU1V2YmdkZnJzdXpnc0dINTM1NkJHSU9GREdIZHNnam1kZk8=";
+  const encodedUserKey = "S0VZX1BVQkxJQy5QUklWQVRFNA=="; 
+  const discordHandle = "Discord: personals23";
+
+  // Decode base64 helper function
+  function b64DecodeUnicode(str) {
+    try {
+      return decodeURIComponent(atob(str).split('').map(c =>
+        '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)
+      ).join(''));
+    } catch {
+      return atob(str);
+    }
+  }
+
+  const DM_KEY = b64DecodeUnicode(encodedDMKey);
+  const USER_KEY = b64DecodeUnicode(encodedUserKey);
 
   const submitBtn = document.getElementById("submitBtn");
   const inputKey = document.getElementById("inputKey");
@@ -355,8 +371,8 @@
 
   submitBtn.addEventListener("click", () => {
     const userInput = inputKey.value.trim();
-    if (userInput === "KEY_PUBLIC.PRIVATE4") {
-      dmDiv.innerHTML = `<strong>DM Key:</strong><br>${DM_KEY}<br><br><em>${DISCORD_HANDLE}</em>`;
+    if (userInput === USER_KEY) {
+      dmDiv.innerHTML = `<strong>DM Key:</strong><br>${DM_KEY}<br><br><em>${discordHandle}</em>`;
       dmDiv.style.display = "block";
       dmDiv.classList.add("visible");
     } else {
