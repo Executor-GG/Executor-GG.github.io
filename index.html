@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <title>Executor GG</title>
   <style>
- html, body {
+   html, body {
   margin: 0;
   padding: 0;
   font-family: Arial, sans-serif;
@@ -269,53 +269,47 @@ footer {
 </head>
 <body>
 
+  <!-- 🔊 SOUND EFFECT AUDIO ELEMENTS -->
+  <audio id="click-sound" src="https://www.soundjay.com/buttons/sounds/button-09.mp3" preload="auto"></audio>
+  <audio id="success-sound" src="https://www.soundjay.com/buttons/sounds/button-4.mp3" preload="auto"></audio>
+  <audio id="error-sound" src="https://www.soundjay.com/button/beep-07.wav" preload="auto"></audio>
+
+  <!-- Your logo and tabs -->
   <a href="https://johnyjonson.github.io/lol-2.com" target="_blank">
     <img src="vxpeLogo.png" alt="vxpe.gg logo" class="logo" />
   </a>
 
   <div class="tabs">
-    <button class="tab-button" onclick="showTab('home')">Home</button>
-    <button class="tab-button" onclick="showTab('configs')">Configs</button>
+    <button class="tab-button" onclick="playSound('click-sound'); showTab('home')">Home</button>
+    <button class="tab-button" onclick="playSound('click-sound'); showTab('configs')">Configs</button>
   </div>
 
+  <!-- Home Tab -->
   <div id="home" class="container active">
     <h1>Welcome to Executor GG</h1>
     <p class="subtitle">Your all-in-one executor tool for fast, secure script execution.</p>
 
     <div class="features-grid">
-      <div class="feature-box" style="animation-delay: 0.2s;">
-        <img src="https://img.icons8.com/ios-filled/100/6a11cb/rocket.png" alt="Speedy Execution" />
-        <h3>Speedy Execution</h3>
-        <p>Run scripts instantly with minimal delay.</p>
-      </div>
-      <div class="feature-box" style="animation-delay: 0.4s;">
-        <img src="https://img.icons8.com/ios-filled/100/6a11cb/shield.png" alt="Secure Environment" />
-        <h3>Secure</h3>
-        <p>Scripts run in a protected environment.</p>
-      </div>
-      <div class="feature-box" style="animation-delay: 0.6s;">
-        <img src="https://img.icons8.com/ios-filled/100/6a11cb/globe--v1.png" alt="Redeem Easily." />
-        <h3>Redeem Codes easily</h3>
-        <p>Redeem DMKeys At Our server: https://discord.gg/kKXngSwqRm </p>
-      </div>
+      <!-- Feature boxes -->
     </div>
 
     <div id="key-entry" class="visible">
       <label for="inputKey">Enter Access Key:</label>
       <input type="password" id="inputKey" placeholder="Enter your key here" />
-      <button class="button" onclick="submitKey()">Submit</button>
+      <button class="button" onclick="playSound('click-sound'); submitKey()">Submit</button>
     </div>
 
     <div id="dm"></div>
   </div>
 
+  <!-- Configs Tab -->
   <div id="configs" class="container">
     <h1>Configuration Tools</h1>
     <p class="subtitle">Access configs and download the executor.</p>
 
     <div class="config-buttons">
-      <a href="https://github.com/JohnyJonson/Injector" target="_blank">Get Public Vxpe Config</a>
-      <a href="https://github.com/JohnyJonson/Executor-gg.wtf/releases" target="_blank">Download Executor</a>
+      <a href="https://github.com/JohnyJonson/Injector" target="_blank" onclick="playSound('click-sound')">Get Public Vxpe Config</a>
+      <a href="https://github.com/JohnyJonson/Executor-gg.wtf/releases" target="_blank" onclick="playSound('click-sound')">Download Executor</a>
     </div>
   </div>
 
@@ -323,6 +317,7 @@ footer {
     Made with 💜 by <a href="https://github.com/johnyjonson" target="_blank">vxpe.gg (johnyjonson)</a>
   </footer>
 
+  <!-- ✅ JAVASCRIPT -->
   <script>
     const encodedKey = "S0VZX1BVQkxJQy5QUklWQVRFNA==";
     const encodedDM = "S0VZX0RNX0FQRS5HZ1hDZ0hUJTlzZGppdmU9bGFiWmo1QmdST2c9";
@@ -335,8 +330,13 @@ footer {
       }
     }
 
+    function playSound(id) {
+      const sound = document.getElementById(id);
+      if (sound) sound.play();
+    }
+
     function showTab(tabName) {
-      document.querySelectorAll(".container").forEach((container) => {
+      document.querySelectorAll(".container").forEach(container => {
         container.classList.remove("active");
         container.style.display = "none";
       });
@@ -351,21 +351,22 @@ footer {
     function submitKey() {
       const input = document.getElementById("inputKey").value.trim();
       const key = decodeBase64(encodedKey);
-
       const dmDiv = document.getElementById("dm");
+
       if (input === key) {
         const dm = decodeBase64(encodedDM);
-        dmDiv.textContent = dm," DMKEY Redeem the DMkey at: https://discord.gg/kKXngSwqRm ";
+        dmDiv.textContent = dm + " DMKEY Redeem the DMkey at: https://discord.gg/kKXngSwqRm ";
         dmDiv.style.display = "block";
         dmDiv.classList.add("visible");
+        playSound("success-sound");
       } else {
         dmDiv.textContent = "Invalid key. Please try again.";
         dmDiv.style.display = "block";
         dmDiv.classList.add("visible");
+        playSound("error-sound");
       }
     }
 
-    // Initialize on load
     window.onload = () => {
       showTab("home");
     };
