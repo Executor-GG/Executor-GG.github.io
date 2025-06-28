@@ -319,6 +319,8 @@
 </footer>
 
 <!-- VANTA.js Scripts -->
+<canvas id="bg-canvas"></canvas>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vanta/dist/vanta.halo.min.js"></script>
 
@@ -344,6 +346,7 @@
     yOffset: -0.01,
     color2: 0xf2bafd
   });
+
 
   function showTab(tabName) {
     document.querySelectorAll(".container").forEach(c => {
