@@ -196,30 +196,6 @@
       box-shadow: 0 0 35px #ffffffcc;
       color: #000;
     }
-#rainbow-halo {
-  position: fixed;
-  pointer-events: none;
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  border: 5px solid;
-  border-image-slice: 1;
-  border-width: 5px;
-  border-image-source: linear-gradient(45deg, red, orange, yellow, green, blue, indigo, violet);
-  animation: rainbow-rotate 3s linear infinite;
-  mix-blend-mode: screen;
-  transform: translate(-50%, -50%);
-  z-index: 9999;
-}
-
-@keyframes rainbow-rotate {
-  0% {
-    border-image-source: linear-gradient(45deg, red, orange, yellow, green, blue, indigo, violet);
-  }
-  100% {
-    border-image-source: linear-gradient(405deg, red, orange, yellow, green, blue, indigo, violet);
-  }
-}
 
     #dm {
       margin-top: 25px;
@@ -341,7 +317,6 @@
 <footer>
   Made with 💜 by <a href="https://github.com/johnyjonson" target="_blank">vxpe.gg aka JohnyJonson and 1 anonymous legend.</a>
 </footer>
-<div id="rainbow-halo"></div>
 
 
 <canvas id="bg-canvas"></canvas>
@@ -359,32 +334,6 @@
       setTimeout(() => tab.classList.add("active"), 10);
     }
   }
-
-const halo = document.getElementById('rainbow-halo');
-
-let mouseX = window.innerWidth / 2;
-let mouseY = window.innerHeight / 2;
-
-let haloX = mouseX;
-let haloY = mouseY;
-
-window.addEventListener('mousemove', e => {
-  mouseX = e.clientX;
-  mouseY = e.clientY;
-});
-
-function animate() {
-  // Easing factor (0.1 means 10% closer per frame)
-  haloX += (mouseX - haloX) * 0.1;
-  haloY += (mouseY - haloY) * 0.1;
-
-  halo.style.left = haloX + 'px';
-  halo.style.top = haloY + 'px';
-
-  requestAnimationFrame(animate);
-}
-
-animate();
 
   const encodedDMKey = "S0VZX0RNX0FQRV9WWFBFX0NPTkZJR19QUklWQVRFX1dFQi5HZ1hDZ0hUZGdIZXNkZnNVU1V2YmdkZnJzdXpnc0dINTM1NkJHSU9GREdIZHNnam1kZk8=";
   const encodedUserKey = "S0VZX1BVQkxJQy5QUklWQVRFNA==";
@@ -407,7 +356,7 @@ animate();
     const userInput = document.getElementById("inputKey").value.trim();
     const dmDiv = document.getElementById("dm");
     if (userInput === USER_KEY) {
-      dmDiv.innerHTML = `<strong>DM Key:</strong><br>${DM_KEY}<br><br><em>${discordHandle}</em>`;
+      dmDiv.innerHTML = <strong>DM Key:</strong><br>${DM_KEY}<br><br><em>${discordHandle}</em>;
       dmDiv.classList.add("visible");
     } else {
       alert("Invalid key.");
