@@ -319,7 +319,7 @@
 </footer>
 
 
-<canvas id="bg-canvas"></canvas>
+
 
 
 <script>
@@ -355,13 +355,14 @@
   document.getElementById("submitBtn").addEventListener("click", () => {
     const userInput = document.getElementById("inputKey").value.trim();
     const dmDiv = document.getElementById("dm");
-    if (userInput === USER_KEY) {
-      dmDiv.innerHTML = <strong>DM Key:</strong><br>${DM_KEY}<br><br><em>${discordHandle}</em>;
-      dmDiv.classList.add("visible");
-    } else {
-      alert("Invalid key.");
-      dmDiv.classList.remove("visible");
-    }
+if (userInput === USER_KEY) {
+  dmDiv.innerHTML = `<strong>DM Key:</strong><br>${DM_KEY}<br><br><em>${discordHandle}</em>`;
+  dmDiv.classList.add("visible");
+} else {
+  alert("Invalid key.");
+  dmDiv.classList.remove("visible");
+}
+
   });
 
   document.getElementById("inputKey").addEventListener("keypress", e => {
